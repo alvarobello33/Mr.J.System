@@ -1,13 +1,12 @@
-# 🖥️ Mr.J.System - Sistema Distriguido Gotham, Fleck, Enigma y Harley
+# 🖥️ Mr.J.System — Sistema Distribuido Gotham, Fleck, Enigma y Harley
 
 **Miembros:**  
-- Carla Francos Molina
+- Carla Francos Molina  
 - Álvaro Bello Garrido  
-
 
 ## 🚀 Descripción general
 
-Este proyecto, implementa un **sistema distribuido** con arquitectura cliente-servidor y varios procesos especializados que cooperan mediante mecanismos de concurrencia.
+Este proyecto implementa un **sistema distribuido** con arquitectura cliente-servidor y varios procesos especializados que cooperan mediante mecanismos de concurrencia.
 
 El sistema consta de los siguientes programas principales:
 
@@ -18,8 +17,6 @@ El sistema consta de los siguientes programas principales:
 - **Arkham** → Proceso de *logging* independiente que registra los eventos del sistema.
 
 El proyecto ha sido desarrollado en **C a bajo nivel** para la asignatura de *Sistemas Operativos*, y utiliza **sockets TCP**, **hilos POSIX (pthreads)**, **memoria compartida** y **pipes** para coordinar conexiones concurrentes, transferir archivos de forma fiable y proporcionar tolerancia a fallos mediante *heartbeats* y *failover automático*.
-
----
 
 ## ⚙️ Características clave
 
@@ -39,35 +36,37 @@ El proyecto ha sido desarrollado en **C a bajo nivel** para la asignatura de *Si
 
 - **Concurrencia y sincronización** sobre estructuras globales compartidas gestionadas con `pthread_mutex`.  
 
----
-
-⚙️ Configuración de archivos (Project/data/)
+## ⚙️ Configuración de archivos (Project/data/)
 
 Antes de compilar el proyecto se deben configurar los archivos dentro de `Project/data/` con el siguiente formato:
 
-gotham.dat:
+`gotham.dat`:
+```
 <IP_Gotham>
 <Puerto_Servidor_Flecks_In_Gotham>
 <IP_Gotham>
 <Puerto_Servidor_Workers_In_Gotham>
-
-worker.dat (Enigma o Harley):
+```
+`worker.dat` (Enigma o Harley):
+```
 <IP_Gotham>
 <Puerto_Servidor_Workers_In_Gotham>
 <IP_Worker>
 <Puerto_Servidor_Flecks_Worker>
-
-fleck.dat:
+```
+`fleck.dat`:
+```
 <IP_Gotham>
 <Puerto_Servidor_Flecks_In_Gotham>
+```
 
 ---
 
 ## 🛠️ Compilación con Makefile
 
-RECORDATORIO: Antes de compilar el proyecto se debe realizar la configuración de archivos Project/data/
+RECORDATORIO: Antes de compilar el proyecto se debe realizar la configuración de archivos `Project/data/` indicada en el apartado anterior.
 
-El proyecto incluye un **Makefile** que ofrece los siguientes comandos:
+El proyecto incluye un **Makefile** que ofrece los siguientes comandos los cuales pueden ser ejecutados por terminal dentro del directorio `Project/`:
 
 | Objetivo | Descripción |
 |-----------|--------------|
@@ -75,7 +74,7 @@ El proyecto incluye un **Makefile** que ofrece los siguientes comandos:
 | `make debug` | Compilación en modo depuración |
 | `make clean` | Limpieza de objetos y binarios |
 
-> Se debe compilar utilizando el compilador **GCC** y se recomienda ejecutar en un entorno **Linux**.
+>💡 Se debe compilar utilizando el compilador **GCC** y se recomienda ejecutar en un entorno **Linux**.
 
 ---
 
@@ -83,8 +82,9 @@ El proyecto incluye un **Makefile** que ofrece los siguientes comandos:
 
 Los programas Gotham, Fleck y Workers (Enigma y Harley) se pueden ejecutar en máquinas diferentes utilizando cada uno una IP diferente. Pero todas las instancias de los programas de tipo Worker (Enigma y Harley) deben ser ejecutadas en la misma máquina para que compartan la dirección IP.
 
-Ejemplo de orden de ejecución:
+### Ejemplo de orden de ejecución:
 
+```bash
 # Servidor central (Ordenador 1)
 ./gotham.exe data/gotham.dat
 
@@ -98,3 +98,4 @@ Ejemplo de orden de ejecución:
 ./fleck.exe data/fleck.dat
 # Cliente2 (Ordenador 4)
 ./fleck.exe data/fleck.dat
+```
