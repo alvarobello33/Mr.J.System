@@ -18,7 +18,7 @@ El sistema consta de los siguientes programas principales:
 
 El proyecto ha sido desarrollado en **C a bajo nivel** para la asignatura de *Sistemas Operativos*, y utiliza **sockets TCP**, **hilos POSIX (pthreads)**, **memoria compartida** y **pipes** para coordinar conexiones concurrentes, transferir archivos de forma fiable y proporcionar tolerancia a fallos mediante *heartbeats* y *failover automático*.
 
-## ⚙️ Características clave
+## 🔍 Características clave
 
 - **Gotham** gestiona dos servidores listeners TCP independientes: uno para **Fleck** y otro para **Workers**.  
   Cada conexión se atiende con un **hilo dedicado**, protegido por mutex, y se monitoriza mediante **heartbeats** para detectar caídas.
@@ -72,7 +72,7 @@ El proyecto incluye un **Makefile** que ofrece los siguientes comandos los cuale
 |-----------|--------------|
 | `make` | Compilación estándar |
 | `make debug` | Compilación en modo depuración |
-| `make clean` | Limpieza de objetos y binarios |
+| `make clean` | Limpieza de objetos y binarios ejecutables |
 
 >💡 Se debe compilar utilizando el compilador **GCC** y se recomienda ejecutar en un entorno **Linux**.
 
